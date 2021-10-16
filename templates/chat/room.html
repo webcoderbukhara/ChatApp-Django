@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Assalomu aleykum {{request.user.first_name}} {{request.user.last_name}}</h1>
+<h2>Chatimizga xush kelibsiz!</h2>
+<hr>
+<h3>Quyidagi chatlarimizdan birini tanlang:</h3>
+
+<form action="" method="POST">{% csrf_token %}
+<select name="room_name" id="">
+<option value=""></option>
+
+{% for rum in room %}
+<option value="{{rum.name}}">{{rum.name}}</option>
+{% endfor %}
+<input type="submit" value="Qo'shilish">
+</select>
+</form>
+<a href="{% url 'create_room' %}">Yangi room qo'shish</a>
+
+{% endblock content %}

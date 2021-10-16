@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Yangi room yarating:</h2>
+{% if err %}
+<p>{{ err }}</p>
+{% endif %}
+<form action="" method="POST"> {% csrf_token %} {% csrf_token %}
+    <input type="text" name="name" id="">
+
+    <select name="human" id="" multiple>
+        
+        {% for hum in human %}
+        <option value="{{hum}}">{{hum.user.username}}</option>
+        {% endfor %}
+
+        <input type="submit" value="Add">
+    </select>
+</form>
+<hr>
+   <a href="{% url 'room_view' %}">Room view</a>
+   <hr>
+{{human}}
+
+{% endblock content %}

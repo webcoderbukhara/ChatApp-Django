@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+     <div id="chat_container">
+
+          <div id="search-container">
+               <input type="text" name="search" id="" placeholder="Search">
+
+          </div>
+
+          <div id="conversation-list">
+               
+            
+            {% for human in room_name.humen.all %}
+            <div class="conversation active">
+                <img src="{{human.avatar.url}}" alt="">
+                <div class="title-text">
+                    {{ human.user.first_name }}
+                    {{ human.user.last_name }}
+                    
+                </div>
+                
+                <div class="conversation-message">
+                    {{ human.user.username }}
+                </div>
+           </div>
+           {% endfor %}     
+               
+
+          </div>
+          <div id="new-message-container">
+               <a href="{% url 'create_room' %}"> + </a>
+
+          </div>
+
+          <div id="chat-title">
+               <span>{{ room_name }}</span>
+               
+
+          </div>
+          
+          <div id="chat-message-list">
+
+            {% for mess in message %}
+
+{% if mess.human.user.username == human_name %}
+   <div class="message-row you-message">
+    <div class="message-content">
+         <div class="message-text">{{mess.content}}</div>
+         <div class="message-time">{{mess.created.time}}</div>
+    </div>
+</div>
+
+{% else %}
+<div class="message-row other-message">
+    <div class="message-content">
+     <img src="{{mess.human.avatar.url}}" alt="{{mess.human}}">
+     <div class="message-text">{{mess.content}}</div>
+     <div class="message-time">{{mess.created.time}}</div>
+    </div>
+</div>
+{% endif %}
+
+
+
+ {% endfor %}
+
+
+
+               
+
+               
+               
+               
+
+               
+
+               
+              
+
+               
+ 
+
+          </div>
+          
+
+
+          <form id="chat-form" action="" method="POST">{% csrf_token %}
+            <img src="./media/images/icons/attachment.svg" alt="">
+            <input type="text" name="message"  placeholder="type a message">
+            <button type="submit"><img src="../../media/icons/send.svg" alt="">Send</button>
+
+            
+        </form>
+
+     </div>
+     <script>
+        //  function WINload(){
+        //      window.location.reload()
+        //  }
+        //  setTimeout(WINload,3000)
+     </script>
+</body>
+</html>

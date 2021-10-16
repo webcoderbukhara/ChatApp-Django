@@ -1,0 +1,17 @@
+
+   {% extends 'base.html' %}
+   {% block content %}
+   {{ user.first_name }} {{ user.last_name }}
+   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit fuga quia officia deserunt accusantium voluptatibus nam maxime nobis cupiditate illo repellat exercitationem, neque tempora provident architecto obcaecati quidem consectetur quam?
+      
+   <hr>
+   <a href="{% url 'room_view' %}">Room view</a>
+   <hr>
+   {% for hum in human %}
+   <h1>{{hum.user.username}}</h1>
+   <h1>{{hum.user.first_name}}</h1>
+   <h1>{{hum.user.last_name}}</h1>
+   <img src="{{hum.avatar.url}}" alt="">
+   {% endfor %}
+   {% endblock content %}
+   
